@@ -1,8 +1,8 @@
 @media screen and ( min-width : 360px ) and ( max-width: 768px ) {
   .chat-body {
-    height: 106.8vh;
-    max-width: 110vw;
-    margin: 0;
+    height: 99.5vh;
+    max-width: 200vw;
+    margin: auto;
   }
   
   #messages {
