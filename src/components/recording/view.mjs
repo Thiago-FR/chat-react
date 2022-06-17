@@ -2,7 +2,6 @@ export default class View {
   constructor(btnStart, btnStop, buttonSend, inputMessage, socket, username, room) {
     this.btnStart = btnStart;
     this.btnStop = btnStop;
-    this.audioElement = document.getElementById('audio');
     this.socket = socket;
     this.username = username;
     this.room = room;
@@ -29,10 +28,11 @@ export default class View {
       spanMessage.innerText = message;
       messageUl.lastChild.appendChild(spanMessage);
     } else {
+      console.log(message);
+      const blob = new Blob(message, { type: 'audio/webm;codecs=opus' } )
       const audio = document.createElement('audio');
       audio.controls = true;
-      console.log('message audio', message);
-      audio.src = message;
+      audio.src = window.URL.createObjectURL(blob);
       audio.muted = false;
       audio.autoplay = false;
       audio.innerText = 'Seu Navegado não suporta a tag <code>audio</code>';

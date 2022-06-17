@@ -44,7 +44,8 @@ export default class Recorder {
   }
 
   getRecordURL() {
-    const blob = new Blob(this.recorderBlobs, { type: this.audioType });
-    return window.URL.createObjectURL(blob);
+    // const blob = new Blob(this.recorderBlobs, { type: this.audioType });
+    // return window.URL.createObjectURL(blob);
+    return this.recorderBlobs;
   }
 }
