@@ -20,18 +20,8 @@
 
 .chat-form input {
   background-color: #f5f5f5;
-  border-radius: 15px;
+  border-radius: 15px 0 0 15px;
   border: 2px solid rgb(197, 192, 192);
-  margin-right: 0.5%;
-  padding: 10px;
-  width: 75%;
-}
-
-.chat-form input {
-  background-color: #f5f5f5;
-  border-radius: 15px;
-  border: 2px solid rgb(197, 192, 192);
-  margin-right: 0.5%;
   padding: 10px;
   width: 75%;
 }
@@ -43,9 +33,30 @@
   color: #FFFFFF;
   cursor: pointer;
   font-weight: 700;
-  margin-left: 10px;
   padding: 10px;
   width: 14%;
+}
+
+.input-and-btn-record {
+  display: inline-block;
+  width: 82%;
+  margin-left: 2px;
+  margin-right: 5px;
+}
+
+.input-and-btn-record > inpput {
+  border: none;
+}
+
+.input-and-btn-record > button {
+  background: royalblue;
+  border-radius: 0 15px 15px 0;
+  border: none;
+  color: #fff;
+  margin: 0;
+  padding: 10px;
+  border: 2px solid rgb(197, 192, 192);
+  position: absolute;
 }
 
 *::-webkit-scrollbar {
@@ -128,3 +139,4 @@
   margin-bottom: 7px;
   padding: 2px 3px;
 }
+

@@ -1,24 +1,48 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router';
 import ChatContext from '../context/ChatContext';
 import socketIOClient from "socket.io-client";
 import ColorGenerator from '../js/ColorGenetaror'
+import View from '../components/recording/view.mjs';
+import Controller from '../components/recording/controller.mjs';
+import Media from '../components/recording/util/media.mjs';
+import Recorder from '../components/recording/util/recorder.mjs';
 import '../css/chatRoom.css';
 import '../css/chatRoom-600px.css'
+import '../css/record.css'
+
 
 const ENDPOINT = process.env.REACT_APP_HOST;
 
 function ChatRoom() {
   const { username, room } = useContext(ChatContext);
+  const [btnStart, setBtnStart] = useState(false);
   const history = useHistory();
 
   const socket = socketIOClient(ENDPOINT);
 
   const inputMessage = useRef(null);
+  const buttonSend = useRef(null);
+  const buttonStart = useRef(null);
+  const buttonStop = useRef(null);
 
   useEffect(() => {
     if (!checkLogin()) return history.push('/');
     socket.emit('joinRoom', { username, room, color: ColorGenerator() });
+
+    const view = new View(
+      buttonStart.current,
+      buttonStop.current,
+      buttonSend.current,
+      inputMessage.current,
+      socket,
+      username,
+      room,
+    );
+    const media = new Media();
+    const recorder = new Recorder();
+
+    Controller.initialize({ view, media, recorder });
   }, []);
 
   const checkLogin = () => {
@@ -31,49 +55,44 @@ function ChatRoom() {
     return true;
   }
 
-  const createMessage = ({ message, className, username, color }) => {
-    const messageUl = document.querySelector('#messages');
-    const li = document.createElement('li');    
-    const spanMessage = document.createElement('span');
-    li.className = className;
-    messageUl.appendChild(li);
-    
-    if (className === 'emit-room' || className === 'emit-me') {
-      const spanUsername = document.createElement('span');
-      spanUsername.className = 'message-username';
-      spanUsername.innerText = username;
-      spanUsername.style.color = color;
-      messageUl.lastChild.appendChild(spanUsername);
-    }
-
-    spanMessage.innerText = message;
-    messageUl.lastChild.appendChild(spanMessage);
-
-    messageUl.scrollTop = messageUl.scrollHeight;
-  };
-
-  socket.on('serverMessage', (message) => createMessage(message));
-  
   // ENVIO DE MENSAGEM
 
   const btnSend = (e) => {
     e.preventDefault();
-    const message = inputMessage.current.value;
-    socket.emit('roomClientMessage', { room, message, username });
-    inputMessage.current.value = '';
-    return false;
   };
+
+  const btnRecord = (e) => {
+    e.preventDefault();
+    setBtnStart(!btnStart);
+  }
   
   return (
     <div className="chat-body">
       <ul id="messages"></ul>
       <form className="chat-form">
-        <input
-          ref={ inputMessage }
-          autoComplete="off"
-          type="text"
-        />
+        <div className="input-and-btn-record">
+          <input
+            ref={ inputMessage }
+            autoComplete="off"
+            type="text"
+          />
+          <button
+            ref={ buttonStart }
+            className=""
+            onClick={ (e) => btnRecord(e)}
+          >
+            Start
+          </button>
+          <button
+            ref={ buttonStop }
+            className="hidden"
+            onClick={ (e) => btnRecord(e)}
+          >
+            Stop
+          </button>
+        </div>
         <button
+          ref={ buttonSend }
           className="btn-send"
           onClick={ (e) => btnSend(e)}
         >
