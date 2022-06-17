@@ -31,6 +31,7 @@ export default class View {
     } else {
       const audio = document.createElement('audio');
       audio.controls = true;
+      console.log('message audio', message);
       audio.src = message;
       audio.muted = false;
       audio.autoplay = false;

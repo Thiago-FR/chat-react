@@ -32,6 +32,6 @@ export default class Controller {
     setTimeout(() => {
       const audioURL = this.recorder.getRecordURL();
       this.view.playAudio(audioURL);
-    });
+    }, 1000);
   }
 }
