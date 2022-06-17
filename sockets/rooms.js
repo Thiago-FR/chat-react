@@ -19,20 +19,22 @@ module.exports = (io) => io.on('connection', (socket) => {
     //   })
     // });
 
-    socket.on('roomClientMessage', ({ room, message, username }) => {
+    socket.on('roomClientMessage', ({ room, message, username, isAudio }) => {
       socket.broadcast.to(room).emit('serverMessage', {
         username,
         message,
         className: 'emit-room',
-        color
+        color,
+        isAudio,
       });
     });
 
-    socket.on('roomClientMessage', ({ room, message, username }) => {
+    socket.on('roomClientMessage', ({ message, username, isAudio }) => {
       socket.emit('serverMessage', {
         username,
         message,
-        className: 'emit-me'
+        className: 'emit-me',
+        isAudio,
       });
     });
 
