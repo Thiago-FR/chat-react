@@ -7,6 +7,7 @@ export default class View {
     this.room = room;
     this.inputMessage = inputMessage;
     this.buttonSend = buttonSend;
+    this.audioType = 'audio/webm;codecs=opus';
     this.configSocketIo();
   }
 
@@ -28,8 +29,7 @@ export default class View {
       spanMessage.innerText = message;
       messageUl.lastChild.appendChild(spanMessage);
     } else {
-      console.log(message);
-      const blob = new Blob(message, { type: 'audio/webm;codecs=opus' } )
+      const blob = new Blob([message], { type: this.audioType } )
       const audio = document.createElement('audio');
       audio.controls = true;
       audio.src = window.URL.createObjectURL(blob);

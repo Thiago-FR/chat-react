@@ -2,7 +2,7 @@ export default class Recorder {
   constructor() {
     this.audioType = 'audio/webm;codecs=opus';
     this.mediaRecorder = {};
-    this.recorderBlobs = [];
+    this.recorderBlobs = null;
   }
 
   _setup() {
@@ -29,7 +29,7 @@ export default class Recorder {
     this.mediaRecorder.ondataavailable = (event) => {
       if (!event.data || !event.data.size) return;
 
-      this.recorderBlobs.push(event.data);
+      this.recorderBlobs = event.data;
     }
 
     this.mediaRecorder.start();
