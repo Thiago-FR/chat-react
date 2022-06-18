@@ -1,11 +1,11 @@
 @media screen and ( min-width : 360px ) and ( max-width: 768px ) {
-  .chat-body {
-    height: 90vh;
-    max-width: 100vw;
+  /* .chat-body {
+    height: 720px;
+    max-width: 1280px;
     margin: auto;
-  }
+  } */
   
   #messages {
-    height: 82vh;
+    height: 460px;
   }
 }
