@@ -6,7 +6,8 @@
 .audioTrue {
   background-image: url('https://media.giphy.com/media/XMaB779YCmP9m/giphy.gif');
   background-repeat: no-repeat;
-  background-size: 250px 50px;
+  background-size: 195px 50px;
+  background-position: 55px;
 }
 
 .player-ctrl {
