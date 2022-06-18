@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router';
 import ChatContext from '../context/ChatContext';
 import socketIOClient from "socket.io-client";
@@ -10,13 +10,13 @@ import Recorder from '../components/recording/util/recorder.mjs';
 import '../css/chatRoom.css';
 import '../css/chatRoom-600px.css'
 import '../css/record.css'
+import '../css/btnAudio.css';
 
 
 const ENDPOINT = process.env.REACT_APP_HOST;
 
 function ChatRoom() {
   const { username, room } = useContext(ChatContext);
-  const [btnStart, setBtnStart] = useState(false);
   const history = useHistory();
 
   const socket = socketIOClient(ENDPOINT);
@@ -55,16 +55,9 @@ function ChatRoom() {
     return true;
   }
 
-  // ENVIO DE MENSAGEM
-
   const btnSend = (e) => {
     e.preventDefault();
   };
-
-  const btnRecord = (e) => {
-    e.preventDefault();
-    setBtnStart(!btnStart);
-  }
   
   return (
     <div className="chat-body">
@@ -77,18 +70,19 @@ function ChatRoom() {
             type="text"
           />
           <button
+            id="btnStart"
             ref={ buttonStart }
             className=""
-            onClick={ (e) => btnRecord(e)}
+            onClick={ (e) => btnSend(e)}
           >
-            Start
           </button>
           <button
+            id="btnStop"
             ref={ buttonStop }
             className="hidden"
-            onClick={ (e) => btnRecord(e)}
+            onClick={ (e) => btnSend(e)}
           >
-            Stop
+            <span className="btn-stop-span flash-red"></span>
           </button>
         </div>
         <button
