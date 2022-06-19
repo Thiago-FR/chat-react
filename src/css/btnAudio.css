@@ -4,7 +4,6 @@
 }
 
 .audioTrue {
-  background-image: url('https://media.giphy.com/media/XMaB779YCmP9m/giphy.gif');
   background-repeat: no-repeat;
   background-size: 195px 50px;
   background-position: 55px;
@@ -13,7 +12,7 @@
 .player-ctrl {
   display: flex;
   justify-content: start;
-  background-color: #000000;
+  background-color: #eef588;
   height: 35px;
   width: 250px;
   padding: 5px 0;
@@ -28,7 +27,7 @@ i {
 }
 
 a {
-  background-color: #fb5f70;
+  background-color: #00ca54;
   border-radius: 2px;
   padding: 5px;
   width: 25px;
