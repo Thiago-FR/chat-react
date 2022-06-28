@@ -17,7 +17,7 @@ function Login() {
 
   function redirect(e) {
     e.preventDefault();
-    if (!checkLogin()) return setError('true');;
+    if (!checkLogin()) return setError('true');
     return history.push('/chat-room');
   };
 

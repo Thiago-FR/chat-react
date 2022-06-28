@@ -25,6 +25,7 @@ function ChatRoom() {
   const buttonSend = useRef(null);
   const buttonStart = useRef(null);
   const buttonStop = useRef(null);
+  
 
   useEffect(() => {
     if (!checkLogin()) return history.push('/');
@@ -43,6 +44,12 @@ function ChatRoom() {
     const recorder = new Recorder();
 
     Controller.initialize({ view, media, recorder });
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      socket.emit('exit');
+    }
   }, []);
 
   const checkLogin = () => {

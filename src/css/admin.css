@@ -1,0 +1,78 @@
+header {
+  background-color: #8ed16a;
+  border-bottom: 5px solid #b1e695;
+  color: rgb(88, 86, 86);
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+}
+
+main {
+  display: flex;
+  justify-content: space-between;
+}
+
+aside {
+  background-color: #7cb65d;
+  border-right: 10px solid #81b366;
+  height: 728px;
+  padding: 40px;
+}
+
+section {
+  margin-top: 15px;
+  margin-right: 150px;
+}
+
+.card-room {
+  background-color: rgba(252, 243, 232, 0.815);
+  border-radius: 10px;
+  box-shadow: 7px 5px 5px rgb(51, 51, 51);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.card-room:hover {
+  background-color: #c2f1c5;
+}
+
+.sala-span {
+  display: flex;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.sala-fake {
+  background-color: rgba(252, 243, 232, 0.815);
+  border-radius: 4px;
+  box-shadow: 7px 2px 5px rgb(97, 97, 97);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+span {
+  font-weight: 700;
+  margin-right: 50px;
+}
+
+.btn-sair {
+  background-color: rgb(255, 73, 1);
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 10px;
+}
+
+.color-off {
+  background-color: rgb(216, 218, 218);
+}
+
+button:disabled {
+  cursor: auto;
+  background-color: rgb(136, 136, 136);
+}

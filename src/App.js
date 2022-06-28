@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Provider from './context/Provider';
 import Login from './pages/login';
 import ChatRoom from './pages/chatRoom';
+import Admin from './pages/admin';
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={ Login } />
-          <Route exact path="/chat-room" component={ ChatRoom } />
+          <Route path="/admin" component={ Admin } />
+          <Route path="/chat-room" component={ ChatRoom } />
         </Switch>
       </BrowserRouter>
     </Provider>
